@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import Users from "../models/userModel.ts";
+import Users from "../models/userModel";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 
@@ -20,7 +20,9 @@ const authCtrl = {
       res.json({msg: 'Register successfully.', data: newUser});
 
     } catch (err: string) {
-      return res.status(500).json({msg: err.message))
+      return res.status(500).json({msg: err.message})
     }
   }
 }
+
+export default authCtrl;

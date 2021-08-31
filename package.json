@@ -20,8 +20,6 @@
   },
   "homepage": "https://github.com/ozzkan-burak/mern-typescript-redux-blog#readme",
   "dependencies": {
-    "@types/bcrypt": "^5.0.0",
-    "@types/jsonwebtoken": "^8.5.3",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -32,6 +30,8 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^8.5.5",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.10",
     "@types/dotenv": "^8.2.0",

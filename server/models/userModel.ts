@@ -22,11 +22,18 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYtfZRhbGQtq2BapB2MXJfWIO2QriO5Wx3qQ&usqp=CAU'
     },
+    role: {
+      type: String,
+      default: 'user'
+    },
     type: {
       type: String,
       default: 'normal'
-  ), {
-    timestamps: true
-  })
+    }
+  },
+    {
+      timestamps: true
+    }
+  )
 
   export  default mongoose.model('User', userSchema)

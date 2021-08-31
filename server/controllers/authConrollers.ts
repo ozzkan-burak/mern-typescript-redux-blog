@@ -1,7 +1,8 @@
 import {Request, Response} from 'express';
-import Users from "../models/userModel.ts";
+import Users from "../models/userModel";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
+import {generateActiveToken} from "../config/generateToken";
 
 const authCtrl = {
   register: async(req: Request, res: Response) => {
@@ -9,18 +10,27 @@ const authCtrl = {
       const {name, account, password} =req.body
 
       const user = await Users.findOne({account})
-      if(!user) return res.status(400).json({msg: 'Email or Phone number already exist.'});
+      if(user) return res.status(400).json({msg: 'Email or Phone number already exist.'});
 
       const passwordHash = await bcrypt.hash(password, 12);
 
-      const newUser = new Users({
+      const newUser = {
         name, account, password: passwordHash
-      })
+      };
 
-      res.json({msg: 'Register successfully.', data: newUser});
+      const active_token = generateActiveToken({newUser})
 
-    } catch (err: string) {
-      return res.status(500).json({msg: err.message))
+      res.json({
+        status: 'OK',
+        msg: 'Register successfully.', 
+        data: newUser,
+        active_token
+      });
+
+    } catch (err: any) {
+      return res.status(500).json({msg: err.message})
     }
   }
 }
+
+export default authCtrl;
